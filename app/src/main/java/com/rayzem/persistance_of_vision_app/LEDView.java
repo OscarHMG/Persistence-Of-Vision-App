@@ -21,8 +21,7 @@ public class LEDView extends SurfaceView {
 
     private Paint paint;
 
-    private String text = "DEDO-/" +
-            "+";
+    private String text = "HOLA";
     private int numPixels;
     private int cont = 0;
 
@@ -89,7 +88,7 @@ public class LEDView extends SurfaceView {
 
         data = getWordPatternMatrix();
 
-        diameterLeds = ((getHeight() / 8)) / numPixels;
+        diameterLeds = ((getHeight() / 2)) / numPixels;
         radiusLeds = diameterLeds / 2;
 
         ledBitMap = Bitmap.createBitmap((int) (diameterLeds + 0.5), (int)(diameterLeds + 0.5), Bitmap.Config.ARGB_8888);
@@ -100,7 +99,7 @@ public class LEDView extends SurfaceView {
 
 
 
-        if(!ledThread.isRunning() ){
+        if(!ledThread.isRunning() && !ledThread.isAlive() ){
             ledThread.setRunning(true);
             ledThread.start();
         }
