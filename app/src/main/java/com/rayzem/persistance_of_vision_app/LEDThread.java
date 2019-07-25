@@ -84,6 +84,11 @@ public class LEDThread extends Thread {
                }
             }
 
+            delay(10);
+            if(cont> 33){
+                cont = 0;
+                delay(120);
+            }
             //After finishing drawing, delay to see a space.
             /*sleepTime = ticksPS - (System.currentTimeMillis() - startTime);
             try {
@@ -127,21 +132,35 @@ public class LEDThread extends Thread {
         if (canvas != null) {
             canvas.drawColor(Color.BLACK);
             Log.i("OSCAR", "lol");
-            for (int y = 0; y < 8; y++) {
-                if (test[y + cont] == 1) {
+
+
+            if(cont > 33) {
+                //cont = 0;
+
+                canvas.drawColor(Color.BLACK);
+                paint.setColor(Color.BLACK);
+                for (int y = 0; y < 8; y++) {
 
                     canvas.drawBitmap(ledBitMap, (x - diameterLeds) / 2, diameterLeds * y, paint);
-
                 }
 
-            }
-            delay(1);
-            cont = cont + 8;
+                //delay(10000);
 
-            if(cont >33) {
-                cont = 0;
-                delay(6);
+            }else{
+                paint.setColor(Color.RED);
+                for (int y = 0; y < 8; y++) {
+                    if (test[y + cont] == 1) {
+
+                        canvas.drawBitmap(ledBitMap, (x - diameterLeds) / 2, diameterLeds * y, paint);
+
+                    }
+
+                }
+                //delay(10);
+                cont = cont + 8;
             }
+
+
             /*canvas.drawColor(Color.BLACK);
             delay(1000);
 
