@@ -4,8 +4,8 @@ import android.util.Log;
 
 public class LEDPattern {
 
-    //private static int A[] = {1,1,1,1,1,1,1,1, 1,0,0,1,0,0,0,0, 1,0,0,1,0,0,0,0, 1,0,0,1,0,0,0,0, 1,1,1,1,1,1,1,1};
-    private static int A[][]= {{1,1,1,1,1},{1,0,0,0,1},{1,0,0,0,1}, {1,1,1,1,1}, {1,0,0,0,1}, {1,0,0,0,1}, {1,0,0,0,1}, {1,0,0,0,1}}; //3x5
+    private static int A[] = {1,1,1,1,1,1,1,1, 1,0,0,1,0,0,0,0, 1,0,0,1,0,0,0,0, 1,0,0,1,0,0,0,0, 1,1,1,1,1,1,1,1};
+    //private static int A[][]= {{1,1,1,1,1},{1,0,0,0,1},{1,0,0,0,1}, {1,1,1,1,1}, {1,0,0,0,1}, {1,0,0,0,1}, {1,0,0,0,1}, {1,0,0,0,1}}; //3x5
 
 
 
@@ -39,7 +39,7 @@ public class LEDPattern {
 
 
 
-    public static int[][] getPatternLetter(Character character){
+    /*public static int[][] getPatternLetter(Character character){
         int result [][] = null;
         switch (Character.toUpperCase(character)) {
             case 'A':
@@ -48,10 +48,10 @@ public class LEDPattern {
         }
 
         return result;
-    }
+    }*/
 
 
-    /*public static int[][] getPatternLetter(Character character){
+    public static int[] getPatternLetter(Character character){
         int result [] = null;
         switch (Character.toUpperCase(character)){
             case 'A':
@@ -135,7 +135,7 @@ public class LEDPattern {
         }
         Log.i("OSCAR: Letter -> ", ""+character);
         return result;
-    }*/
+    }
 
 
 

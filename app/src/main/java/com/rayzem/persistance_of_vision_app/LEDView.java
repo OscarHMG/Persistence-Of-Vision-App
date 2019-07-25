@@ -25,6 +25,8 @@ public class LEDView extends SurfaceView {
     private int numPixels;
     private int cont = 0;
 
+    private int [] test;
+
 
     public LEDView(Context context) {
         super(context);
@@ -48,7 +50,7 @@ public class LEDView extends SurfaceView {
         paint = new Paint();
 
         surfaceHolder = getHolder();
-        ledThread = new LEDThread(this);
+
         
         surfaceHolder.addCallback(new SurfaceHolder.Callback() {
             @Override
@@ -86,9 +88,13 @@ public class LEDView extends SurfaceView {
 
     private void setDrawingTools() {
 
-        data = getWordPatternMatrix();
+        //data = getWordPatternMatrix();
 
-        diameterLeds = ((getHeight() / 2)) / numPixels;
+        test = LEDPattern.getPatternLetter('B');
+
+        //diameterLeds = ((getHeight() / 8)) / numPixels;
+
+        diameterLeds = ((getHeight() / 2)) / 14;
         radiusLeds = diameterLeds / 2;
 
         ledBitMap = Bitmap.createBitmap((int) (diameterLeds + 0.5), (int)(diameterLeds + 0.5), Bitmap.Config.ARGB_8888);
@@ -97,6 +103,8 @@ public class LEDView extends SurfaceView {
         paint.setColor(Color.RED);
         canvas.drawCircle(radiusLeds, radiusLeds, radiusLeds, paint);
 
+
+        ledThread = new LEDThread(this, test, ledBitMap, getWidth() );
 
 
         if(!ledThread.isRunning() && !ledThread.isAlive() ){
@@ -118,6 +126,70 @@ public class LEDView extends SurfaceView {
 
             if(cont >= data.length)
                 cont = 0;
+        }
+    }
+
+
+    public void testTransition(Canvas canvas){
+        if(canvas != null){
+            canvas.drawColor(Color.BLACK);
+            Log.i("OSCAR", "lol");
+            for (int y=0; y<8; y++){
+                if(test[y] == 1){
+                    paint.setColor(Color.RED);
+                    canvas.drawBitmap(ledBitMap, (getWidth() - diameterLeds) / 2,diameterLeds * y, paint);
+
+                }
+                else{
+                    paint.setColor(Color.BLACK);
+                    canvas.drawBitmap(ledBitMap, (getWidth() - diameterLeds) / 2,diameterLeds * y, paint);
+
+                }
+
+            }
+
+            /*canvas.drawColor(Color.BLACK);
+            ledThread.delay(1000);
+
+            for (int y=0; y<8; y++){
+                if(test[y + 8] == 1)
+                    canvas.drawBitmap(ledBitMap, (getWidth() - diameterLeds) / 2,diameterLeds * y, paint);
+
+            }
+            canvas.drawColor(Color.BLACK);
+            //ledThread.delay(1000);
+
+
+            for (int y=0; y<8; y++){
+                if(test[y + 16] == 1)
+                    canvas.drawBitmap(ledBitMap, (getWidth() - diameterLeds) / 2,diameterLeds * y, paint);
+
+            }
+            canvas.drawColor(Color.BLACK);
+            //ledThread.delay(1000);
+
+            for (int y=0; y<8; y++){
+                if(test[y + 24] == 1)
+                    canvas.drawBitmap(ledBitMap, (getWidth() - diameterLeds) / 2,diameterLeds * y, paint);
+
+            }
+            canvas.drawColor(Color.BLACK);
+            //ledThread.delay(1000);
+
+            for (int y=0; y<8; y++){
+                if(test[y + 32] == 1)
+                    canvas.drawBitmap(ledBitMap, (getWidth() - diameterLeds) / 2,diameterLeds * y, paint);
+
+            }*/
+
+            //canvas.drawColor(Color.BLACK);
+
+
+
+            //ledThread.delay(600);
+
+
+
         }
     }
 
@@ -154,6 +226,35 @@ public class LEDView extends SurfaceView {
     }
 
 
+    public float getDiameterLeds() {
+        return diameterLeds;
+    }
 
+    public void setDiameterLeds(float diameterLeds) {
+        this.diameterLeds = diameterLeds;
+    }
 
+    public float getRadiusLeds() {
+        return radiusLeds;
+    }
+
+    public void setRadiusLeds(float radiusLeds) {
+        this.radiusLeds = radiusLeds;
+    }
+
+    public static Bitmap getLedBitMap() {
+        return ledBitMap;
+    }
+
+    public static void setLedBitMap(Bitmap ledBitMap) {
+        LEDView.ledBitMap = ledBitMap;
+    }
+
+    public int[] getTest() {
+        return test;
+    }
+
+    public void setTest(int[] test) {
+        this.test = test;
+    }
 }
