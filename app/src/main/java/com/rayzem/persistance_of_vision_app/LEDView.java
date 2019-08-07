@@ -90,11 +90,11 @@ public class LEDView extends SurfaceView {
 
         //data = getWordPatternMatrix();
 
-        test = LEDPattern.getPatternLetter('E');
+        //test = LEDPattern.getPatternLetter('E');
 
         //diameterLeds = ((getHeight() / 8)) / numPixels;
 
-        diameterLeds = ((getHeight() / 4)) / 14;
+        diameterLeds = ((getHeight() / 2)) / 14;
         radiusLeds = diameterLeds / 2;
 
         ledBitMap = Bitmap.createBitmap((int) (diameterLeds + 0.5), (int)(diameterLeds + 0.5), Bitmap.Config.ARGB_8888);
